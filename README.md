@@ -25,7 +25,7 @@ with open('predictions.json', 'w') as f:
 ```
 
 ### How to use the web app
-Using the web application is pretty straightforward. Visit [this link](https://flairpredict.herokuapp.com/) and enter the URL of a Reddit post from r/india, and click on 'Predict'. You'll be redirected to the prediction page, from which you can move back to the homepage.
+Using the web application is pretty straightforward. Visit [this link,](https://flairpredict.herokuapp.com/) enter the URL of a Reddit post from r/india, and click on 'Predict'. You'll be redirected to the prediction page, from which you can move back to the homepage.
  1                         |                      2    |
 :-------------------------:|:-------------------------:|
 ![](images/homescreen.png?raw=True) |![](images/predicted.png?raw=true) |
