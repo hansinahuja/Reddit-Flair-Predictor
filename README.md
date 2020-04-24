@@ -39,3 +39,9 @@ python main.py
 The app will be hosted on the address that shows up on your command prompt.
 
 ## The five phases
+
+### Part 1 - Data collection
+### Part 2 - Exploratory data analysis
+### Part 3 - Building a flair detector
+### Part 4 - Building a web application
+### Part 5 - Deployment
