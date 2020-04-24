@@ -11,7 +11,7 @@ There exists an endpoint for automated testing. You can send an automated POST r
 import requests 
 import json
 
-# Making the post request
+# Making the POST request
 url = "https://flairpredict.herokuapp.com/automated_testing"
 files = {'upload_file': open('test.txt', 'rb')}
 r = requests.post(url, files=files)
