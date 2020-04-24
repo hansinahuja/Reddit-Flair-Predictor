@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<title>Reddit Flair Predictor</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900" rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="https://www.reddit.com/favicon.ico" />
+<style>
+body,h1 {font-family: "Poppins", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url("{{ url_for('static', filename='images/Capture2.png') }}");
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+        #nodec { 
+            text-decoration: none; 
+        }  
+  .example_c {
+  color: #000000 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  padding: 20px;
+  border: 4px solid #000000 !important;
+  width: 30%;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  }
+
+  .example_c:hover {
+  color: #ffffff !important;
+  background: #000000;
+  border-color: #000000 !important;
+  transition: all 0.4s ease 0s;
+}
+</style>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-black">
+  <div class="w3-display-middle">
+    <h1 class="w3-jumbo w3-animate-top w3-center">{{ result }}</h1>
+    <hr class="w3-border-black" style="margin:auto;width:40%">
+    <p class="w3-xlarge w3-center">{{ title }}<br>{{ prediction }}<br>{{ flair }}</p>
+      <div class="button_cont" align="center"><a class="example_c" href="{{ url_for('main') }}">Go back</a></div>
+  </div>
+</div>
+
+</body>
+</html>
