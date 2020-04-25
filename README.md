@@ -69,6 +69,8 @@ def use_api(test_file):
     r1 = requests.post(url, files=files).json()
     r.update(r1)
   os.remove("test_temp.txt")
+  print('Queries handled = ', tot_count)
+  print('Completed!')
   return r
   
 r = use_api('test.txt')
