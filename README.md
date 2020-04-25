@@ -41,7 +41,23 @@ The app will be hosted on the address that shows up on your command prompt.
 ## The five phases
 
 ### Part 1 - Data collection
+We use the Praw API to fetch data from Reddit. One of the problems with the Praw API is that it only lets you access 1000 posts per request. To overcome this limitation, after every 1000 posts that we collect, we'll note the time stamp of the last post collected, and then collect the 1000 posts preceding that time, and so on. Install the required libraries and use `notebooks/Part1-Data-Collection.ipynb` to reproduce the results.
+
 ### Part 2 - Exploratory data analysis
+Standard data analysis, where we plot various stats related to the data, and check for correlations between different words and flairs. Install the required libraries and use `notebooks/Part2-EDA.ipynb` to reproduce the results.
+
 ### Part 3 - Building a flair detector
+We test the following models:
+| Model       | Validation accuracy            |
+| ---                | ---             |
+| RandomForestClassifier             | 50.51%             |
+| LinearSVC           | 52.10%            |
+| MultinomialNB        | 51.35%             |
+| LogisticRegression    | 52.88%             |
+| SGDClassifier       | 52.26%             |
+| XGBoost       | 48.72%             |
+| ULMFit with AWD-LSTM       | 56.01%             |
+| Attention with BiLSTM       | 55.70%             |
+
 ### Part 4 - Building a web application
 ### Part 5 - Deployment
