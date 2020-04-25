@@ -66,6 +66,7 @@ We use Flask to create a simple web application with 3 endpoints:
 - `/predicted`: prediction page
 - `/automated_testing`: to handle POST requests for API calls. Usage has been descibed above
 A couple of screenshots from the app:
+
  Landing page                         |                      Prediction page    |
 :-------------------------:|:-------------------------:|
 ![](images/homescreen.png?raw=True) |![](images/predicted.png?raw=true) |
