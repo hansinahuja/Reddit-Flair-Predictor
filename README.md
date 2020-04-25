@@ -7,6 +7,8 @@ Creating a web app using Flask to predict flairs of Reddit posts from r/india. T
 ### How to use the API
 There exists an endpoint for automated testing. You can send an automated POST request with a .txt file which contains a link of a r/india post in every line. Response of the request will be a json file in which key is the link to the post and value should be predicted flair.
 
+**NOTE:** Heroku throws a timeout limit for POST requests, so the query can only handle upto 150 queries in one POST request. To handle larger queries, see the code second code snippet below.
+
 ```python
 import requests 
 import json
@@ -22,6 +24,48 @@ r = r.json()
 # Save to a json file
 with open('predictions.json', 'w') as f:
     json.dump(r, f, indent=4)
+```
+
+To handle larger queries, you can divide your queries up and send multiple POST requests. The following function can help you do it:
+
+```python
+import time
+import json
+import requests
+import os
+
+def use_api(test_file):
+  f = open(test_file, "r")
+  url = "https://flairpredict.herokuapp.com/automated_testing"
+  count = 0
+  r = {}
+  for line in f:
+    line = line.strip()
+    if line == "":
+      continue
+    if count==0:
+      f1 = open('test_temp.txt', 'w')
+      time.sleep(3)
+    f1.write(line + "\n")
+    count += 1
+    if count==50:
+      f1.close()
+      count = 0
+      files = {'upload_file': open('test_temp.txt', 'rb')}
+      r1 = requests.post(url, files=files)
+      print(r1.status_code)
+      r1 = r1.json()
+      r.update(r1)
+  f.close()
+  if count>0:
+    f1.close()
+    files = {'upload_file': open('test_temp.txt', 'rb')}
+    r1 = requests.post(url, files=files).json()
+    r.update(r1)
+  os.remove("test_temp.txt")
+  return r
+  
+r = use_api('test.txt')
 ```
 
 ### How to locally host the app
