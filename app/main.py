@@ -85,18 +85,20 @@ def build(maxlen, len_word_index):
     model = Model(inputs, outputs)
     return model
 
-reddit = praw.Reddit(client_id='boMxCvM-oq9RoA',
-                     client_secret='t-BCX6os0EZDZ-jbJbkbnZN6UnU',
-                     user_agent='thedudebro29')
+# Enter Reddit credentials here
+client_id = ###
+client_secret = ###
+user_agent = ###
+reddit = praw.Reddit(client_id=client_id,
+                     client_secret=client_secret,
+                     user_agent=user_agent)
 
 sess = tf.Session()
 graph = tf.get_default_graph()
 set_session(sess)
 model = build(50, 33001)
-model.load_weights('/app/app/models/model_weights.hdf5')
-pickle_in = open("/app/app/models/tokenizer.pickle","rb")
-# model.load_weights('models/model_weights.hdf5')
-# pickle_in = open("models/tokenizer.pickle","rb")
+model.load_weights('models/model_weights.hdf5')
+pickle_in = open("models/tokenizer.pickle","rb")
 tokenizer = pickle.load(pickle_in)
 app = flask.Flask(__name__, template_folder='templates')
 
