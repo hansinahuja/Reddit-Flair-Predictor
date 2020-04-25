@@ -46,7 +46,7 @@ def use_api(test_file):
       continue
     if count==0:
       f1 = open('test_temp.txt', 'w')
-      time.sleep(3.5)
+      time.sleep(4)
     f1.write(line + "\n")
     count += 1
     tot_count += 1
@@ -55,9 +55,13 @@ def use_api(test_file):
       count = 0
       files = {'upload_file': open('test_temp.txt', 'rb')}
       r1 = requests.post(url, files=files)
+      while r1.status_code!=200:
+        print("Error! Trying again")
+        time.sleep(20)
+        r1 = requests.post(url, files=files)
+      print('Queries handled = ', tot_count)
       r1 = r1.json()
       r.update(r1)
-      print('Queries handled = ', tot_count)
   f.close()
   if count>0:
     f1.close()
