@@ -7,7 +7,7 @@ Creating a web app using Flask to predict flairs of Reddit posts from r/india. T
 ### How to use the API
 There exists an endpoint for automated testing. You can send an automated POST request with a .txt file which contains a link of a r/india post in every line. Response of the request will be a json file in which key is the link to the post and value should be predicted flair.
 
-**NOTE:** Heroku throws a timeout limit for POST requests, so the query can only handle upto 150 queries in one POST request. To handle larger queries, see the code second code snippet below.
+**NOTE:** Heroku throws a timeout error for long POST requests, so the API can only handle a limited number of queries in one request. To handle larger queries, see the second code snippet below.
 
 ```python
 import requests 
@@ -38,6 +38,7 @@ def use_api(test_file):
   f = open(test_file, "r")
   url = "https://flairpredict.herokuapp.com/automated_testing"
   count = 0
+  tot_count = 0
   r = {}
   for line in f:
     line = line.strip()
@@ -45,17 +46,18 @@ def use_api(test_file):
       continue
     if count==0:
       f1 = open('test_temp.txt', 'w')
-      time.sleep(3)
+      time.sleep(3.5)
     f1.write(line + "\n")
     count += 1
-    if count==50:
+    tot_count += 1
+    if count==150:
       f1.close()
       count = 0
       files = {'upload_file': open('test_temp.txt', 'rb')}
       r1 = requests.post(url, files=files)
-      print(r1.status_code)
       r1 = r1.json()
       r.update(r1)
+      print('Queries handled = ', tot_count)
   f.close()
   if count>0:
     f1.close()
