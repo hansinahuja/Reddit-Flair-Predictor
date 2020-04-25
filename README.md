@@ -24,12 +24,6 @@ with open('predictions.json', 'w') as f:
     json.dump(r, f, indent=4)
 ```
 
-### How to use the web app
-Using the web application is pretty straightforward. Visit [this link,](https://flairpredict.herokuapp.com/) enter the URL of a Reddit post from r/india, and click on 'Predict'. You'll be redirected to the prediction page, from which you can move back to the homepage.
- Landing page                         |                      Prediction page    |
-:-------------------------:|:-------------------------:|
-![](images/homescreen.png?raw=True) |![](images/predicted.png?raw=true) |
-
 ### How to locally host the app
 Move into the `app` directory and run:
 ```
@@ -59,5 +53,22 @@ We test the following models:
 | ULMFit with AWD-LSTM       | 56.01%             |
 | Attention with BiLSTM       | 55.70%             |
 
+For deployment, the achitecture selected was Attention with BiLSTM, because Heroku's 500MB slug size was too small to deploy the AWD-LSTM architecture.
+
+To reproduce the results, install the required libraries and run:
+- `notebooks/Part3a-Building-a-Flair-Detector.ipynb`
+- `notebooks/Part3b-Building-a-Flair-Detector.ipynb`
+- `notebooks/Part3ac-Building-a-Flair-Detector.ipynb`
+
 ### Part 4 - Building a web application
+We use Flask to create a simple web application with 3 endpoints:
+- `/`: landing page
+- `/predicted`: prediction page
+- `/automated_testing`: to handle POST requests for API calls. Usage has been descibed above
+A couple of screenshots from the app:
+ Landing page                         |                      Prediction page    |
+:-------------------------:|:-------------------------:|
+![](images/homescreen.png?raw=True) |![](images/predicted.png?raw=true) |
+
 ### Part 5 - Deployment
+The app has been deployed on Heroku [here.](https://flairpredict.herokuapp.com/) It might take a while to respond due to the large slug size of the app (498MB). Using the application is pretty straightforward. Visit [this link,](https://flairpredict.herokuapp.com/) enter the URL of a Reddit post from r/india, and click on 'Predict'. You'll be redirected to the prediction page, from which you can move back to the homepage.
