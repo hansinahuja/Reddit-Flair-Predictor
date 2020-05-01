@@ -110,7 +110,7 @@ For deployment, the achitecture selected was Attention with BiLSTM, because Hero
 To reproduce the results, install the required libraries and run:
 - `notebooks/Part3a-Building-a-Flair-Detector.ipynb`
 - `notebooks/Part3b-Building-a-Flair-Detector.ipynb`
-- `notebooks/Part3ac-Building-a-Flair-Detector.ipynb`
+- `notebooks/Part3c-Building-a-Flair-Detector.ipynb`
 
 ### Part 4 - Building a web application
 We use Flask to create a simple web application with 3 endpoints:
